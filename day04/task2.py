@@ -1,4 +1,23 @@
 #!/usr/bin/env python3
+#
+# We need to find out how many assignment pairs partially contain each other.
+#
+# Each line of input contains two pairs, comma-separated. For example,
+#
+#     3-6,2-4
+#
+# We need to figure out the ranges of each, and see if one partially contains
+# the other. Figure out how many overlap in total.
+#
+# Like my other solutions, I go for performance here. Only process one line
+# at a time, keep minimal state.
+#
+# For this, I'm grabbing each range, splitting it and converting to a list
+# of lower and upper bounds. Note: I could easily use a regex here to simplify
+# some of this if I wanted.
+#
+# I then just need to check if one range's lower bound exists within the
+# other's range, and vice-versa. That'll get me the overlaps.
 
 num_full_overlaps = 0
 

@@ -1,4 +1,25 @@
 #!/usr/bin/env python3
+#
+# We need to find the top three elves carrying the most calories, and what
+# that total is for all three.
+#
+# This works differently from task1.py. I now need to gather the totals for
+# a given elf before processing it, unlike in that task where I could process
+# line-by-line.
+#
+# So we have one function that handles iteration, and counting of calories for
+# an elf. It yields data any time we know we're done processing for a given
+# elf, whether due to a blank line or end-of-file.
+#
+# That then lets us keep our processing loop simple. We just iterate over the
+# data yielded.
+#
+# We still need to know the top three elves and their calories, so what we do
+# is keep a list of the top 3, in order from highest to lowest calories.
+# For each result, we loop through the rankings and see if the new elf beats
+# out a ranked elf to a calorie count. If so, we insert the new one right
+# before that one, and then we cap the ranks back to 3.
+
 
 TOP_RANKED_ELVES = 3
 

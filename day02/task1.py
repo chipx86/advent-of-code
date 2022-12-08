@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+#
+# We need to find the total score of the hands of Rock-Paper-Scissors, as
+# listed in the input. The input will tell us what hands the opponent is
+# playing and what hands we should play for that given round (win, lose, or
+# draw).
+#
+# Like my other solutions, I aim for an optimized approach. That means
+# processing one line at a time and keeping minimal state. Just the total
+# score.
+#
+# I keep mappings of inputs to values, including scores and what hands win
+# against or tie against other hands.
+#
+# It's then trivial to take a value from the input, get a value from the map,
+# and make a determination as to the score.
 
 SCORES = {
     'X': 1,  # Rock

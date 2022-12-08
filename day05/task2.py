@@ -3,6 +3,29 @@
 # NOTE: I originally hard-coded the crates, but that felt too easy. So now
 #       I parse them from the input. And I don't assume number of stacks.
 #       Why not.
+#
+# This is similar to task1.py, with the exception that we can now move multiple
+# crates at a time.
+#
+# For this task, we have stacks of crates, and instructions for moving those
+# crates. The crates must be moved one-by-one from a stack. Almost a Towers of
+# Hanoi sort of thing. So, moving [1][2][3] one-by-one would get us [3][2][1].
+#
+# Like my other tasks, I aim to keep performance high. I do need to keep track
+# of all the stacks, but I process move instructions one-by-one.
+#
+# First, I parse out the initial stack configuration. I use a regex for this,
+# which can match cargo or a blank area where cargo would be. I then just
+# iterate through the results, inserting the cargo at the start of each stack.
+#
+# Once I'm in the move processing phase, I use another regex to parse out the
+# move instruction. Then I just need to handle the move.
+#
+# The logic for this part is similar to task1.py, except I don't need to
+# reverse the crates I'm extracting. I just extract them as-is and put them
+# in the destination.
+#
+# That makes this code effectively identical to task1.py, minus a reverse().
 
 import re
 
@@ -10,7 +33,11 @@ import re
 MOVE_RE = re.compile(r'^move (\d+) from (\d+) to (\d+)')
 CRATES_RE = re.compile(r'(?:\[(?P<cargo>[A-Z])\]|   ) ?')
 
+
+# Index 0 in a stack is the bottom-most item.
 stacks = []
+
+# Whether we're in the setup phase, parsing the initial stacks.
 in_setup = True
 
 
